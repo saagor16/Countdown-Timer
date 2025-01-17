@@ -1,13 +1,10 @@
 import './App.css';
+import CountdownTimer from './Component/CountdownTimer/CountdownTimer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      <h1 className="text-3xl font-bold underline">
-      Countdown Timer
-    </h1>
-      </header>
+    <div>
+      <CountdownTimer></CountdownTimer>
     </div>
   );
 }
