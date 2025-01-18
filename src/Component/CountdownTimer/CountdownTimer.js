@@ -13,12 +13,6 @@ function CountdownTimer() {
     if (!isActive) setTime(inputTime);
   };
 
-  const formatTime = () => {
-    const minutes = String(Math.floor(time / 60)).padStart(2, "0");
-    const seconds = String(time % 60).padStart(2, "0");
-    return `${minutes}:${seconds}`;
-  };
-
   const handleStart = () => {
     if (time > 0) {
       setIsActive(true);
@@ -37,6 +31,19 @@ function CountdownTimer() {
     setIsPause(false);
     setTime(0);
     setInputValue(""); // ইনপুট ফিল্ড ক্লিয়ার করা
+  };
+
+  const formatTime = () => {
+    const minutes = String(Math.floor(time / 60)).padStart(2, "0");
+    const seconds = String(time % 60).padStart(2, "0");
+    return `${minutes}:${seconds}`;
+  };
+
+  const handleKeyPress = (event) => {
+    const allowedKeys = /^[0-9]*$/; // শুধুমাত্র সংখ্যা অনুমোদিত
+    if (!allowedKeys.test(event.key)) {
+      event.preventDefault(); // অন্য কোনো কী নিষিদ্ধ
+    }
   };
 
   useEffect(() => {
@@ -59,10 +66,11 @@ function CountdownTimer() {
       <h1 className="text-3xl font-bold mb-6 text-gray-800">Countdown Timer</h1>
       <div className="flex flex-col items-center w-full">
         <input
-          type="number"
+          type="text" // "number" এর পরিবর্তে "text" ব্যবহার করা
           className="block w-64 px-4 py-2 text-lg border border-gray-300 rounded-md mb-4 text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Enter time in minutes"
           onChange={handleInput}
+          onKeyPress={handleKeyPress} // নেগেটিভ বা অ-সংখ্যা কী নিষিদ্ধ
           value={inputValue} // ইনপুট ফিল্ডে ভ্যালু যোগ করা
           disabled={isActive}
         />
