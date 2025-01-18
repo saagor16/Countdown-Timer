@@ -1,31 +1,34 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./CountdownTimer.css";
 
 function CountdownTimer() {
   const [time, setTime] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isPause, setIsPause] = useState(false);
+  const [inputValue, setInputValue] = useState(""); // ইনপুট ফিল্ড ক্লিয়ার করার জন্য স্টেট
   const intervalRef = useRef(null);
 
   const handleInput = (event) => {
-    setTime(parseInt(event.target.value * 60) || 0);
+    const inputTime = parseInt(event.target.value * 60) || 0;
+    setInputValue(event.target.value); // ইনপুট ভ্যালু সংরক্ষণ
+    if (!isActive) setTime(inputTime);
   };
 
   const formatTime = () => {
-    const min = String(Math.floor(time / 60)).padStart(2, "0");
-    const sec = String(time % 60).padStart(2, "0");
-    return `${min}:${sec}`;
+    const minutes = String(Math.floor(time / 60)).padStart(2, "0");
+    const seconds = String(time % 60).padStart(2, "0");
+    return `${minutes}:${seconds}`;
   };
 
   const handleStart = () => {
-    setIsActive(true);
-    setIsPause(false);
+    if (time > 0) {
+      setIsActive(true);
+      setIsPause(false);
+    }
   };
 
   const handlePause = () => {
-    setIsPause(true);
-    setIsActive(false);
-    clearInterval(intervalRef.current);
+    setIsPause(!isPause);
+    if (isPause) setIsActive(true);
   };
 
   const handleReset = () => {
@@ -33,36 +36,66 @@ function CountdownTimer() {
     setIsActive(false);
     setIsPause(false);
     setTime(0);
+    setInputValue(""); // ইনপুট ফিল্ড ক্লিয়ার করা
   };
 
   useEffect(() => {
     if (isActive && !isPause && time > 0) {
       intervalRef.current = setInterval(() => {
-        setTime((prev) => prev - 1);
+        setTime((prevTime) => prevTime - 1);
       }, 1000);
     } else if (time === 0 && isActive) {
       clearInterval(intervalRef.current);
       setIsActive(false);
       alert("Time is up!");
+      setInputValue(""); // সময় শেষ হলে ইনপুট ফিল্ড ক্লিয়ার করা
     }
 
     return () => clearInterval(intervalRef.current);
   }, [isActive, isPause, time]);
 
   return (
-    <div className="countdown-timer">
-      <h1>Countdown Timer</h1>
-      <div className="timer-display">
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 font-sans">
+      <h1 className="text-3xl font-bold mb-6 text-gray-800">Countdown Timer</h1>
+      <div className="text-center">
         <input
           type="number"
+          className="block w-64 px-4 py-2 text-lg border border-gray-300 rounded-md mb-4 text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Enter time in minutes"
           onChange={handleInput}
+          value={inputValue} // ইনপুট ফিল্ডে ভ্যালু যোগ করা
+          disabled={isActive}
         />
-        <div className="time">{formatTime()}</div>
-        <div className="timer-controls">
-          <button onClick={handleStart}>Start</button>
-          <button onClick={handlePause}>Pause</button>
-          <button onClick={handleReset}>Reset</button>
+        <div className="text-5xl font-mono text-blue-600 mb-6">{formatTime()}</div>
+        <div className="flex flex-col items-center space-y-4 md:flex-row md:space-y-0 md:space-x-4">
+          <button
+            onClick={handleStart}
+            className={`w-32 h-12 px-6 py-3 rounded-lg font-semibold ${
+              isActive && !isPause
+                ? "bg-blue-300 text-gray-800 cursor-not-allowed"
+                : "bg-blue-500 text-white hover:bg-blue-600"
+            }`}
+            disabled={isActive && !isPause}
+          >
+            Start
+          </button>
+          <button
+            onClick={handlePause}
+            className={`w-32 h-12 px-6 py-3 rounded-lg font-semibold ${
+              isActive
+                ? "bg-yellow-500 text-white hover:bg-yellow-600"
+                : "bg-yellow-300 text-gray-800 cursor-not-allowed"
+            }`}
+            disabled={!isActive}
+          >
+            {isPause ? "Resume" : "Pause"}
+          </button>
+          <button
+            onClick={handleReset}
+            className="w-32 h-12 px-6 py-3 bg-red-500 hover:bg-red-600 rounded-lg font-semibold text-white"
+          >
+            Reset
+          </button>
         </div>
       </div>
     </div>
