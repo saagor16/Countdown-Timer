@@ -57,7 +57,7 @@ function CountdownTimer() {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100 font-sans">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">Countdown Timer</h1>
-      <div className="text-center">
+      <div className="flex flex-col items-center w-full">
         <input
           type="number"
           className="block w-64 px-4 py-2 text-lg border border-gray-300 rounded-md mb-4 text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
