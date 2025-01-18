@@ -63,12 +63,12 @@ function CountdownTimer() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200 font-sans">
-      {/* হেডার সেন্টার করা */}
+     
       <h1 className="text-4xl md:text-5xl font-bold mb-8 text-gray-800 text-center shadow-sm">
         ⏳ Countdown Timer
       </h1>
       <div className="bg-white shadow-lg rounded-lg p-6 w-80 md:w-96">
-        {/* ইনপুট ফিল্ড সেন্টার করা */}
+        
         <input
           type="text"
           className="block w-full px-4 py-3 text-lg border border-gray-300 rounded-lg mb-4 text-center focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"

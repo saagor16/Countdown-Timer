@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Countdown Timer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a responsive and visually appealing Countdown Timer application built with **React** and **Tailwind CSS**. The application allows users to input a time in minutes and start a countdown. It includes functionality for pausing, resuming, and resetting the timer.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Responsive Design**: Optimized for all devices, including mobile, tablet, and desktop.
+- **User-Friendly Interface**: Clean and intuitive layout.
+- **Real-Time Countdown**: Displays the remaining time in minutes and seconds.
+- **Pause and Resume**: Users can pause the timer and resume from where they left off.
+- **Reset Functionality**: Reset the timer to the initial state.
+- **Error Prevention**: Prevents non-numeric inputs and negative values.
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React**: For building the user interface.
+- **Tailwind CSS**: For styling and responsiveness.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How to Use
 
-### `npm test`
+1. Enter the desired time in minutes in the input field.
+2. Click the **Start** button to begin the countdown.
+3. Use the **Pause** button to pause the countdown.
+4. Use the **Resume** button to continue the countdown.
+5. Click the **Reset** button to clear the timer and input field.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/saagor16/Countdown-Timer
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd countdown-timer
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+5. Open your browser and go to `http://localhost:5173/`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Deployment
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The project can be deployed using platforms like **Vercel**. For deployment instructions, refer to their respective documentation:
+- [Vercel Documentation](https://countdown-timer-peach-theta.vercel.app/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Folder Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+├── public
+├── src
+│   ├── components
+│   │   └── CountdownTimer.jsx
+│   ├── App.jsx
+│   ├── index.css
+│   └── main.jsx
+├── .gitignore
+├── package.json
+└── vite.config.js
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## License
 
-## Learn More
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to customize and enhance the timer as per your needs. Contributions are welcome!
