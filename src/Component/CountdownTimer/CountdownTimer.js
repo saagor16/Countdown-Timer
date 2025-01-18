@@ -4,12 +4,12 @@ function CountdownTimer() {
   const [time, setTime] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isPause, setIsPause] = useState(false);
-  const [inputValue, setInputValue] = useState(""); // ইনপুট ফিল্ড ক্লিয়ার করার জন্য স্টেট
+  const [inputValue, setInputValue] = useState("");
   const intervalRef = useRef(null);
 
   const handleInput = (event) => {
     const inputTime = parseInt(event.target.value * 60) || 0;
-    setInputValue(event.target.value); // ইনপুট ভ্যালু সংরক্ষণ
+    setInputValue(event.target.value);
     if (!isActive) setTime(inputTime);
   };
 
@@ -30,7 +30,7 @@ function CountdownTimer() {
     setIsActive(false);
     setIsPause(false);
     setTime(0);
-    setInputValue(""); // ইনপুট ফিল্ড ক্লিয়ার করা
+    setInputValue("");
   };
 
   const formatTime = () => {
@@ -40,9 +40,9 @@ function CountdownTimer() {
   };
 
   const handleKeyPress = (event) => {
-    const allowedKeys = /^[0-9]*$/; // শুধুমাত্র সংখ্যা অনুমোদিত
+    const allowedKeys = /^[0-9]*$/;
     if (!allowedKeys.test(event.key)) {
-      event.preventDefault(); // অন্য কোনো কী নিষিদ্ধ
+      event.preventDefault();
     }
   };
 
@@ -55,33 +55,39 @@ function CountdownTimer() {
       clearInterval(intervalRef.current);
       setIsActive(false);
       alert("Time is up!");
-      setInputValue(""); // সময় শেষ হলে ইনপুট ফিল্ড ক্লিয়ার করা
+      setInputValue("");
     }
 
     return () => clearInterval(intervalRef.current);
   }, [isActive, isPause, time]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 font-sans">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800">Countdown Timer</h1>
-      <div className="flex flex-col items-center w-full">
+    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-blue-50 via-blue-100 to-blue-200 font-sans">
+      {/* হেডার সেন্টার করা */}
+      <h1 className="text-4xl md:text-5xl font-bold mb-8 text-gray-800 text-center shadow-sm">
+        ⏳ Countdown Timer
+      </h1>
+      <div className="bg-white shadow-lg rounded-lg p-6 w-80 md:w-96">
+        {/* ইনপুট ফিল্ড সেন্টার করা */}
         <input
-          type="text" // "number" এর পরিবর্তে "text" ব্যবহার করা
-          className="block w-64 px-4 py-2 text-lg border border-gray-300 rounded-md mb-4 text-center focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          type="text"
+          className="block w-full px-4 py-3 text-lg border border-gray-300 rounded-lg mb-4 text-center focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
           placeholder="Enter time in minutes"
           onChange={handleInput}
-          onKeyPress={handleKeyPress} // নেগেটিভ বা অ-সংখ্যা কী নিষিদ্ধ
-          value={inputValue} // ইনপুট ফিল্ডে ভ্যালু যোগ করা
+          onKeyPress={handleKeyPress}
+          value={inputValue}
           disabled={isActive}
         />
-        <div className="text-5xl font-mono text-blue-600 mb-6">{formatTime()}</div>
-        <div className="flex flex-col items-center space-y-4 md:flex-row md:space-y-0 md:space-x-4">
+        <div className="text-6xl font-mono text-blue-600 mb-6 border-4 border-blue-300 rounded-lg p-4 bg-blue-50 shadow-inner text-center">
+          {formatTime()}
+        </div>
+        <div className="flex flex-col items-center md:flex-row space-y-4 md:space-y-0 md:space-x-4">
           <button
             onClick={handleStart}
-            className={`w-32 h-12 px-6 py-3 rounded-lg font-semibold ${
+            className={`w-full md:w-32 px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
               isActive && !isPause
                 ? "bg-blue-300 text-gray-800 cursor-not-allowed"
-                : "bg-blue-500 text-white hover:bg-blue-600"
+                : "bg-blue-500 text-white hover:bg-blue-600 shadow-md"
             }`}
             disabled={isActive && !isPause}
           >
@@ -89,9 +95,9 @@ function CountdownTimer() {
           </button>
           <button
             onClick={handlePause}
-            className={`w-32 h-12 px-6 py-3 rounded-lg font-semibold ${
+            className={`w-full md:w-32 px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${
               isActive
-                ? "bg-yellow-500 text-white hover:bg-yellow-600"
+                ? "bg-yellow-500 text-white hover:bg-yellow-600 shadow-md"
                 : "bg-yellow-300 text-gray-800 cursor-not-allowed"
             }`}
             disabled={!isActive}
@@ -100,7 +106,7 @@ function CountdownTimer() {
           </button>
           <button
             onClick={handleReset}
-            className="w-32 h-12 px-6 py-3 bg-red-500 hover:bg-red-600 rounded-lg font-semibold text-white"
+            className="w-full md:w-32 px-6 py-3 bg-red-500 hover:bg-red-600 rounded-lg font-semibold text-white shadow-md transition-all duration-300"
           >
             Reset
           </button>
